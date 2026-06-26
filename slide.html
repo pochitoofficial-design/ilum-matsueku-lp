@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ILUM. BEAUTY SALON｜スライドLP（テスト版）</title>
+<meta name="description" content="大阪府和泉市のまつ毛エクステ専門サロン ILUM.。自まつ毛にやさしいLEDフラットラッシュ。当日予約OK／学割あり／隠れ家サロン。和泉中央駅より徒歩8分。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --white:#ffffff;
+    --green:#06c755;
+    --serif-en:"Cormorant Garamond", serif;
+    --serif-jp:"Noto Serif JP", serif;
+    --sans-jp:"Noto Sans JP", sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    font-family:var(--sans-jp); color:var(--ink); background:#0d0d0d;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* スマホ：全画面／PC：スマホ幅プレビュー枠で中央 */
+  .stage{
+    position:relative; width:100%; max-width:460px; margin:0 auto;
+    height:100dvh; background:var(--white); overflow:hidden;
+    box-shadow:0 0 60px rgba(0,0,0,.5);
+  }
+  .deck{
+    height:100%; overflow-y:scroll; scroll-snap-type:y mandatory;
+    scroll-behavior:smooth; scrollbar-width:none;
+  }
+  .deck::-webkit-scrollbar{ display:none; }
+
+  .slide{
+    position:relative; min-height:100dvh; scroll-snap-align:start;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:70px 30px 92px; overflow:hidden;
+  }
+  .slide--dark{ background:var(--ink); color:var(--white); }
+  .slide--img{ justify-content:flex-end; color:var(--white); }
+  .slide--img::after{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.7) 100%);
+  }
+  .slide__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .slide__inner{ position:relative; z-index:2; width:100%; }
+
+  /* タイポ */
+  .eyebrow{
+    font-family:var(--serif-en); font-size:.82rem; letter-spacing:.32em;
+    text-transform:uppercase; opacity:.85; margin-bottom:16px; display:block;
+  }
+  .badge{
+    display:inline-block; font-size:.7rem; letter-spacing:.1em; padding:6px 14px;
+    border:1px solid currentColor; border-radius:30px; margin-bottom:20px; opacity:.95;
+  }
+  .big{
+    font-family:var(--serif-jp); font-weight:600; line-height:1.5;
+    font-size:clamp(1.55rem, 6.6vw, 2.15rem); letter-spacing:.04em;
+  }
+  .big em{ font-style:normal; border-bottom:2px solid currentColor; padding-bottom:2px; }
+  .lead{ font-size:.9rem; line-height:2; margin-top:20px; font-weight:300; letter-spacing:.04em; }
+  .sub{ font-size:.82rem; line-height:1.9; margin-top:14px; font-weight:300; opacity:.92; }
+  .brand{ font-family:var(--serif-en); font-size:2.5rem; letter-spacing:.18em; font-weight:500; }
+  .brand small{ display:block; font-size:.6rem; letter-spacing:.42em; opacity:.85; margin-top:8px; font-family:var(--sans-jp); }
+
+  .center{ text-align:center; }
+  .heading{ margin-bottom:8px; }
+  .divider{ width:38px; height:1px; background:currentColor; opacity:.5; margin:18px 0 0; }
+  .center .divider{ margin:18px auto 0; }
+
+  /* トラスト */
+  .trust{ display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:22px; font-size:.74rem; letter-spacing:.04em; opacity:.95; }
+  .trust span{ position:relative; }
+  .trust span:not(:last-child)::after{ content:"｜"; margin-left:14px; opacity:.4; }
+
+  /* 悩みリスト */
+  .worry{ list-style:none; margin-top:26px; display:grid; gap:14px; }
+  .worry li{ font-size:.92rem; letter-spacing:.02em; padding-left:28px; position:relative; line-height:1.6; }
+  .worry li::before{ content:"✓"; position:absolute; left:0; top:1px; font-family:var(--serif-en); opacity:.7; }
+  .bridge{ margin-top:28px; font-family:var(--serif-jp); font-size:1.02rem; line-height:1.7; }
+  .bridge em{ font-style:normal; border-bottom:2px solid currentColor; }
+
+  /* 選ばれる理由 */
+  .reasons{ margin-top:24px; display:grid; gap:18px; }
+  .reason{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+  .reason__no{ font-family:var(--serif-en); font-size:1.5rem; font-weight:600; opacity:.55; line-height:1; }
+  .reason h3{ font-family:var(--serif-jp); font-size:1rem; font-weight:600; letter-spacing:.03em; margin-bottom:5px; }
+  .reason p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.92; }
+
+  /* ギャラリー */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:24px; }
+  .grid2 figure{ position:relative; aspect-ratio:1/1; overflow:hidden; border-radius:6px; }
+  .grid2 img{ width:100%; height:100%; object-fit:cover; }
+  .grid2 figcaption{
+    position:absolute; left:8px; bottom:8px; font-family:var(--serif-en); font-size:.66rem;
+    letter-spacing:.16em; color:#fff; background:rgba(0,0,0,.45); padding:3px 8px; border-radius:3px;
+  }
+
+  /* お客様の声 */
+  .voices{ margin-top:22px; display:grid; gap:14px; }
+  .vcard{ border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:16px 16px; }
+  .vcard p{ font-size:.8rem; line-height:1.75; font-weight:300; }
+  .vcard span{ display:block; margin-top:10px; font-size:.72rem; opacity:.6; letter-spacing:.04em; }
+
+  /* 料金 */
+  .ptable{ margin-top:22px; }
+  .ptable__head, .prow{ display:grid; grid-template-columns:1fr 72px 72px; gap:8px; align-items:baseline; }
+  .ptable--1 .ptable__head, .ptable--1 .prow{ grid-template-columns:1fr auto; }
+  .ptable__head{ padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.5); }
+  .ptable__head span{ font-size:.66rem; letter-spacing:.12em; opacity:.7; }
+  .ptable__head .r{ text-align:right; }
+  .prow{ padding:13px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .prow:last-child{ border-bottom:none; }
+  .prow .nm{ font-size:.84rem; font-weight:300; letter-spacing:.02em; }
+  .prow .v{ font-family:var(--serif-en); font-size:1.2rem; font-weight:600; text-align:right; white-space:nowrap; }
+  .prow .dash{ opacity:.35; font-size:1rem; }
+  .pnote{ text-align:center; font-size:.72rem; opacity:.6; margin-top:18px; letter-spacing:.05em; }
+
+  /* 初回特典・流れ 共通リスト */
+  .deflist{ list-style:none; margin-top:24px; display:grid; gap:14px; }
+  .deflist li{ font-size:.88rem; line-height:1.6; padding-left:26px; position:relative; font-weight:300; }
+  .deflist li::before{ content:"◎"; position:absolute; left:0; top:0; opacity:.8; }
+
+  .flow{ margin-top:24px; display:grid; gap:0; }
+  .fstep{ display:grid; grid-template-columns:auto 1fr; gap:16px; padding:0 0 22px; position:relative; }
+  .fstep:last-child{ padding-bottom:0; }
+  .fstep__no{
+    width:42px; height:42px; border-radius:50%; border:1px solid currentColor;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif-en);
+    font-size:1.1rem; font-weight:600; flex-shrink:0; z-index:1; background:var(--ink);
+  }
+  .fstep:not(:last-child)::before{
+    content:""; position:absolute; left:21px; top:42px; bottom:0; width:1px; background:rgba(255,255,255,.3);
+  }
+  .fstep h3{ font-family:var(--serif-jp); font-size:.98rem; font-weight:600; margin-bottom:5px; }
+  .fstep p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.9; }
+
+  /* FAQ */
+  .faq{ margin-top:22px; display:grid; gap:14px; }
+  .faq__item{ border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:14px; }
+  .faq__q{ font-size:.9rem; font-weight:500; line-height:1.5; padding-left:24px; position:relative; }
+  .faq__q::before{ content:"Q"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.7; }
+  .faq__a{ font-size:.8rem; line-height:1.7; font-weight:300; opacity:.88; margin-top:8px; padding-left:24px; position:relative; }
+  .faq__a::before{ content:"A"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.45; }
+
+  /* アクセス */
+  .map{ margin-top:22px; border-radius:8px; overflow:hidden; aspect-ratio:16/10; }
+  .map iframe{ width:100%; height:100%; border:0; display:block; filter:grayscale(.2); }
+  .access{ margin-top:20px; display:grid; gap:0; }
+  .access div{ display:grid; grid-template-columns:84px 1fr; gap:10px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.14); font-size:.82rem; }
+  .access dt{ font-family:var(--serif-en); letter-spacing:.1em; opacity:.7; font-size:.78rem; }
+  .access dd{ font-weight:300; line-height:1.6; }
+  .access a{ color:inherit; }
+
+  /* CTAボタン */
+  .cta-group{ display:grid; gap:12px; margin-top:28px; width:100%; max-width:320px; }
+  .center .cta-group{ margin-left:auto; margin-right:auto; }
+  .btn{
+    display:flex; align-items:center; justify-content:center; gap:8px; height:54px; border-radius:40px;
+    font-size:.9rem; font-weight:500; letter-spacing:.05em; text-decoration:none; transition:transform .2s;
+  }
+  .btn:active{ transform:scale(.97); }
+  .btn--hpb{ background:var(--white); color:var(--ink); border:1px solid var(--white); }
+  .btn--line{ background:var(--green); color:#fff; }
+  .btn svg{ width:18px; height:18px; }
+
+  .copy{ margin-top:34px; font-family:var(--serif-en); font-size:.66rem; letter-spacing:.16em; opacity:.5; text-align:center; }
+
+  /* スワイプ誘導 */
+  .swipe{
+    position:absolute; left:50%; bottom:30px; transform:translateX(-50%); z-index:3;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-size:.66rem; letter-spacing:.22em; opacity:.85;
+  }
+  .swipe .arrow{ width:20px; height:20px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); animation:bob 1.6s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:rotate(45deg) translate(0,0); opacity:.4; } 50%{ transform:rotate(45deg) translate(3px,3px); opacity:1; } }
+
+  /* ページネーション */
+  .dots{ position:absolute; right:12px; top:50%; transform:translateY(-50%); z-index:50; display:flex; flex-direction:column; gap:8px; }
+  .dots button{ width:7px; height:7px; border-radius:50%; border:none; padding:0; cursor:pointer; background:rgba(128,128,128,.45); transition:all .3s; }
+  .dots button.active{ background:var(--ink); height:18px; border-radius:4px; }
+  .dots button.on-dark{ background:rgba(255,255,255,.4); }
+  .dots button.on-dark.active{ background:#fff; }
+
+  /* 進捗バー */
+  .progress{ position:absolute; top:0; left:0; height:3px; background:var(--ink); z-index:60; width:0; transition:width .25s ease; }
+
+  @media (prefers-reduced-motion:reduce){ .arrow{ animation:none; } .deck{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="progress" id="progress"></div>
+  <nav class="dots" id="dots" aria-label="スライド移動"></nav>
+
+  <div class="deck" id="deck">
+
+    <!-- 1. HERO -->
+    <section class="slide slide--img" data-theme="dark">
+      <img class="slide__bg" src="image/S__154583053.jpg" alt="ILUM. のまつ毛エクステ施術例" />
+      <div class="slide__inner">
+        <span class="badge">当日予約OK ｜ 学割クーポンあり</span>
+        <div class="brand">ILUM.<small>BEAUTY SALON</small></div>
+        <h1 class="big" style="margin-top:18px;">LEDエクステ<br><em>持続力1.5倍</em> ×<br>美しく高持続</h1>
+        <p class="sub">大阪・和泉市のまつ毛エクステ専門サロン<br>LEDフラットラッシュ</p>
+        <div class="trust">
+          <span>★★★★☆ 口コミ4.0</span><span>隠れ家サロン</span><span>和泉中央駅 徒歩8分</span>
+        </div>
+      </div>
+      <div class="swipe"><span>SWIPE</span><span class="arrow"></span></div>
+    </section>
+
+    <!-- 2. 悩み -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Check</span>
+        <h2 class="big heading">こんな<em>お悩み</em>、<br>ありませんか？</h2>
+        <ul class="worry">
+          <li>マツエクで自まつ毛が痩せた・抜けた気がする</li>
+          <li>付けても2〜3週間で取れてしまう</li>
+          <li>いつも同じデザインで垢抜けない</li>
+          <li>忙しくてサロンに通う時間が取れない</li>
+          <li>自分に似合うまつ毛が分からない</li>
+          <li>グルーでしみる・かゆくなるのが心配</li>
+        </ul>
+        <p class="bridge">その悩み、<em>ILUM. のLEDフラットラッシュ</em>で解決できます。</p>
+      </div>
+    </section>
+
+    <!-- 3. 解決 -->
+    <section class="slide slide--img" data-theme="dark">
+      <img class="slide__bg" src="image/S__154583052.jpg" alt="LEDフラットラッシュの施術イメージ" />
+      <div class="slide__inner">
+        <span class="eyebrow">Solution</span>
+        <h2 class="big">自まつ毛にやさしい<br><em>LEDフラットラッシュ</em></h2>
+        <p class="lead">軽い・長持ち・地まつ毛みたいに自然。<br>軽量フラットラッシュが負担を最小限にし、根元から扇状に立ち上がる自然な目元へ。LED接着で施術も短時間です。</p>
+      </div>
+    </section>
+
+    <!-- 4. 選ばれる理由 -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Why ILUM.</span>
+        <h2 class="big heading">ILUM. が<em>選ばれる理由</em></h2>
+        <div class="reasons">
+          <div class="reason"><div class="reason__no">01</div><div><h3>自まつ毛を傷めない設計</h3><p>軽量フラットラッシュ＋丁寧なカウンセリングで、まつ毛の健康を第一に。</p></div></div>
+          <div class="reason"><div class="reason__no">02</div><div><h3>アレルギーにも対応するやさしさ</h3><p>しみる・かゆいが不安な方へ。アレルギー対応グルーをご用意。</p></div></div>
+          <div class="reason"><div class="reason__no">03</div><div><h3>一人ひとりへの“似合わせ”</h3><p>骨格・目の形・なりたい印象に合わせてオーダーメイド設計。</p></div></div>
+          <div class="reason"><div class="reason__no">04</div><div><h3>隠れ家のような上質空間</h3><p>席間をゆったりとった落ち着いた空間。そのままおやすみいただけます。</p></div></div>
+          <div class="reason"><div class="reason__no">05</div><div><h3>当日予約OK・通いやすい価格</h3><p>思い立ったその日に。学割クーポンもご用意しています。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ギャラリー -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Gallery</span>
+        <h2 class="big heading">施術<em>ギャラリー</em></h2>
+        <p class="sub">実際の仕上がりをご覧ください。</p>
+        <div class="grid2">
+          <figure><img src="image/S__154583050.jpg" alt="施術例 01" /><figcaption>CASE 01</figcaption></figure>
+          <figure><img src="image/S__154583057.jpg" alt="施術例 02" /><figcaption>CASE 02</figcaption></figure>
+          <figure><img src="image/S__154583055.jpg" alt="施術例 03" /><figcaption>CASE 03</figcaption></figure>
+          <figure><img src="image/S__154583053.jpg" alt="施術例 04" /><figcaption>CASE 04</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. お客様の声 -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Voice</span>
+        <h2 class="big heading">お客様の<em>声</em></h2>
+        <div class="voices">
+          <div class="vcard"><p>前のサロンだと2週間でスカスカでしたが、ここに変えて3週間以上きれいに持ってます。デザインも毎回相談に乗ってくれて安心。</p><span>— 20代・会社員（フラットラッシュ）</span></div>
+          <div class="vcard"><p>当日LINEで空き確認したら取ってもらえて助かりました。施術中ほぼ寝てしまうくらいリラックス（笑）。仕上がりも自然です。</p><span>— 30代・主婦</span></div>
+          <div class="vcard"><p>初めてで目に染みないか不安でしたが、丁寧に説明してもらえて安心。本数や長さも提案してくれてちょうど良かった。</p><span>— 20代・学生（学割利用）</span></div>
+          <div class="vcard"><p>「盛りすぎないで」の希望どおりに。すっぴんでも目元が整って朝がラク。落ち着いた雰囲気も気に入ってます。</p><span>— 40代・パート</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 料金（エクステ） -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Price</span>
+        <h2 class="big heading">まつ毛エクステ<em>料金</em></h2>
+        <div class="ptable">
+          <div class="ptable__head"><span>メニュー</span><span class="r">初来店</span><span class="r">リピート</span></div>
+          <div class="prow"><span class="nm">100本</span><span class="v">¥6,500</span><span class="v">¥7,500</span></div>
+          <div class="prow"><span class="nm">120本</span><span class="v">¥7,000</span><span class="v">¥8,000</span></div>
+          <div class="prow"><span class="nm">つけ放題</span><span class="v">¥7,500</span><span class="v">¥8,500</span></div>
+          <div class="prow"><span class="nm">ダブルフラット 40/40束</span><span class="v"><span class="dash">—</span></span><span class="v">¥8,000</span></div>
+          <div class="prow"><span class="nm">ダブルフラット 60/60束</span><span class="v"><span class="dash">—</span></span><span class="v">¥9,000</span></div>
+          <div class="prow"><span class="nm">ILUM.ORIGINAL 似合わせ</span><span class="v"><span class="dash">—</span></span><span class="v">¥8,000</span></div>
+        </div>
+        <p class="pnote">※価格はすべて税込表示です</p>
+      </div>
+    </section>
+
+    <!-- 8. オプション料金 -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Option</span>
+        <h2 class="big heading">オプション</h2>
+        <div class="ptable ptable--1">
+          <div class="ptable__head"><span>メニュー</span><span class="r">料金</span></div>
+          <div class="prow"><span class="nm">付け足し（2週間以内）</span><span class="v">¥4,000〜</span></div>
+          <div class="prow"><span class="nm">カラー・ブラウンエクステ</span><span class="v">¥1,000</span></div>
+          <div class="prow"><span class="nm">アイシャンプー</span><span class="v">¥500</span></div>
+          <div class="prow"><span class="nm">オフ（当店）</span><span class="v">¥500〜</span></div>
+          <div class="prow"><span class="nm">オフ（他店）</span><span class="v">¥2,500</span></div>
+        </div>
+        <p class="pnote">※価格はすべて税込表示です</p>
+      </div>
+    </section>
+
+    <!-- 9. 初回特典 -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner center">
+        <span class="eyebrow">First Visit</span>
+        <h2 class="big">初めての方へ、<br><em>うれしい特典</em>をご用意</h2>
+        <ul class="deflist" style="text-align:left; max-width:300px; margin-left:auto; margin-right:auto;">
+          <li>当日予約OK ── 思い立ったその日に通える</li>
+          <li>学割クーポンあり ── 学生さんを応援</li>
+          <li>初来店価格 ── まずはお試ししやすい料金で</li>
+        </ul>
+        <div class="cta-group">
+          <a class="btn btn--hpb" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
+          <a class="btn btn--line" href="https://page.line.me/740hlxky?oat_content=url&openQrModal=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.74 2 10.35c0 4.13 3.55 7.59 8.35 8.24.32.07.77.21.88.49.1.25.06.64.03.89l-.14.86c-.04.25-.2.99.87.54 1.07-.45 5.77-3.4 7.87-5.82C21.36 13.96 22 12.24 22 10.35 22 5.74 17.52 2 12 2z"/></svg>LINEで予約</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. 施術の流れ -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Flow</span>
+        <h2 class="big heading">施術の<em>流れ</em></h2>
+        <div class="flow">
+          <div class="fstep"><div class="fstep__no">1</div><div><h3>ご予約・ご来店</h3><p>ホットペッパー・LINE・お電話からご予約。落ち着いた空間でお迎えします。</p></div></div>
+          <div class="fstep"><div class="fstep__no">2</div><div><h3>カウンセリング</h3><p>なりたい印象・お悩みをヒアリングし、似合わせデザインをご提案。</p></div></div>
+          <div class="fstep"><div class="fstep__no">3</div><div><h3>施術</h3><p>そのままおやすみいただけるリラックス空間で、丁寧に施術します。</p></div></div>
+          <div class="fstep"><div class="fstep__no">4</div><div><h3>仕上がり確認・お見送り</h3><p>仕上がりとお手入れ方法をご案内。次回のご予約も承ります。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="big heading">よくある<em>質問</em></h2>
+        <div class="faq">
+          <div class="faq__item"><p class="faq__q">マツエクは初めてですが大丈夫ですか？</p><p class="faq__a">はい。カウンセリングで丁寧にご説明しますのでご安心ください。ご希望に合わせてご提案します。</p></div>
+          <div class="faq__item"><p class="faq__q">持ちはどのくらいですか？</p><p class="faq__a">個人差はありますが、目安として3〜4週間ほどです。お手入れ方法もご案内します。</p></div>
+          <div class="faq__item"><p class="faq__q">当日予約はできますか？</p><p class="faq__a">空き状況により当日予約も承っております。LINE・お電話・ホットペッパーよりお問い合わせください。</p></div>
+          <div class="faq__item"><p class="faq__q">他店で付けたマツエクのオフもできますか？</p><p class="faq__a">はい、他店オフも承っております（料金は料金表をご確認ください）。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. アクセス -->
+    <section class="slide slide--dark" data-theme="dark">
+      <div class="slide__inner">
+        <span class="eyebrow">Access</span>
+        <h2 class="big heading">店舗<em>情報</em></h2>
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=大阪府和泉市万町944-2&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ILUM. BEAUTY SALON 地図"></iframe>
+        </div>
+        <dl class="access">
+          <div><dt>Address</dt><dd>〒 大阪府和泉市万町944-2 1F</dd></div>
+          <div><dt>Access</dt><dd>和泉中央駅より徒歩8分／石尾中学校の真横・駐車場6台完備</dd></div>
+          <div><dt>Tel</dt><dd><a href="tel:09010565581">090-1056-5581</a></dd></div>
+          <div><dt>Open</dt><dd>10:00 〜 19:00</dd></div>
+          <div><dt>Closed</dt><dd>日曜・祝日は不定休</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 13. 最終CTA -->
+    <section class="slide slide--img" data-theme="dark">
+      <img class="slide__bg" src="image/S__154583057.jpg" alt="ILUM. のまつ毛デザイン" />
+      <div class="slide__inner center">
+        <span class="eyebrow">Reservation</span>
+        <h2 class="big">まずはお気軽に<br>ご予約ください</h2>
+        <p class="lead" style="margin-top:14px;">当日予約OK ｜ 学割あり ｜ 隠れ家サロン</p>
+        <div class="cta-group">
+          <a class="btn btn--hpb" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
+          <a class="btn btn--line" href="https://page.line.me/740hlxky?oat_content=url&openQrModal=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.74 2 10.35c0 4.13 3.55 7.59 8.35 8.24.32.07.77.21.88.49.1.25.06.64.03.89l-.14.86c-.04.25-.2.99.87.54 1.07-.45 5.77-3.4 7.87-5.82C21.36 13.96 22 12.24 22 10.35 22 5.74 17.52 2 12 2z"/></svg>LINEで予約</a>
+        </div>
+        <p class="copy">© 2025 ILUM. BEAUTY SALON.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const deck = document.getElementById('deck');
+  const slides = Array.from(deck.querySelectorAll('.slide'));
+  const dotsNav = document.getElementById('dots');
+  const progress = document.getElementById('progress');
+
+  slides.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', (i + 1) + '枚目へ');
+    b.addEventListener('click', () => slides[i].scrollIntoView());
+    dotsNav.appendChild(b);
+  });
+  const dots = Array.from(dotsNav.children);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const i = slides.indexOf(e.target);
+        dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        const dark = e.target.dataset.theme === 'dark';
+        dots.forEach((d) => d.classList.toggle('on-dark', dark));
+        progress.style.background = dark ? '#fff' : '#1a1a1a';
+      }
+    });
+  }, { threshold: 0.55 });
+  slides.forEach((s) => io.observe(s));
+
+  deck.addEventListener('scroll', () => {
+    const max = deck.scrollHeight - deck.clientHeight;
+    progress.style.width = (deck.scrollTop / max * 100) + '%';
+  }, { passive: true });
+</script>
+</body>
+</html>
