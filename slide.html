@@ -12,6 +12,8 @@
   :root{
     --ink:#1a1a1a;
     --white:#ffffff;
+    --offwhite:#f7f6f4;
+    --line:#e8e8e8;
     --green:#06c755;
     --serif-en:"Cormorant Garamond", serif;
     --serif-jp:"Noto Serif JP", serif;
@@ -20,7 +22,7 @@
   *{ margin:0; padding:0; box-sizing:border-box; }
   html,body{ height:100%; }
   body{
-    font-family:var(--sans-jp); color:var(--ink); background:#0d0d0d;
+    font-family:var(--sans-jp); color:var(--ink); background:#eceae7;
     -webkit-font-smoothing:antialiased;
   }
 
@@ -28,7 +30,7 @@
   .stage{
     position:relative; width:100%; max-width:460px; margin:0 auto;
     height:100dvh; background:var(--white); overflow:hidden;
-    box-shadow:0 0 60px rgba(0,0,0,.5);
+    box-shadow:0 0 50px rgba(0,0,0,.18);
   }
   .deck{
     height:100%; overflow-y:scroll; scroll-snap-type:y mandatory;
@@ -40,12 +42,13 @@
     position:relative; min-height:100dvh; scroll-snap-align:start;
     display:flex; flex-direction:column; justify-content:center;
     padding:70px 30px 92px; overflow:hidden;
+    background:var(--white); color:var(--ink);
   }
-  .slide--dark{ background:var(--ink); color:var(--white); }
+  .slide--alt{ background:var(--offwhite); }
   .slide--img{ justify-content:flex-end; color:var(--white); }
   .slide--img::after{
     content:""; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.7) 100%);
+    background:linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,.7) 100%);
   }
   .slide__bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
   .slide__inner{ position:relative; z-index:2; width:100%; }
@@ -53,8 +56,9 @@
   /* タイポ */
   .eyebrow{
     font-family:var(--serif-en); font-size:.82rem; letter-spacing:.32em;
-    text-transform:uppercase; opacity:.85; margin-bottom:16px; display:block;
+    text-transform:uppercase; opacity:.7; margin-bottom:16px; display:block;
   }
+  .slide--img .eyebrow{ opacity:.9; }
   .badge{
     display:inline-block; font-size:.7rem; letter-spacing:.1em; padding:6px 14px;
     border:1px solid currentColor; border-radius:30px; margin-bottom:20px; opacity:.95;
@@ -65,14 +69,13 @@
   }
   .big em{ font-style:normal; border-bottom:2px solid currentColor; padding-bottom:2px; }
   .lead{ font-size:.9rem; line-height:2; margin-top:20px; font-weight:300; letter-spacing:.04em; }
-  .sub{ font-size:.82rem; line-height:1.9; margin-top:14px; font-weight:300; opacity:.92; }
+  .sub{ font-size:.82rem; line-height:1.9; margin-top:14px; font-weight:300; opacity:.85; }
+  .slide--img .sub{ opacity:.92; }
   .brand{ font-family:var(--serif-en); font-size:2.5rem; letter-spacing:.18em; font-weight:500; }
   .brand small{ display:block; font-size:.6rem; letter-spacing:.42em; opacity:.85; margin-top:8px; font-family:var(--sans-jp); }
 
   .center{ text-align:center; }
   .heading{ margin-bottom:8px; }
-  .divider{ width:38px; height:1px; background:currentColor; opacity:.5; margin:18px 0 0; }
-  .center .divider{ margin:18px auto 0; }
 
   /* トラスト */
   .trust{ display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:22px; font-size:.74rem; letter-spacing:.04em; opacity:.95; }
@@ -82,16 +85,16 @@
   /* 悩みリスト */
   .worry{ list-style:none; margin-top:26px; display:grid; gap:14px; }
   .worry li{ font-size:.92rem; letter-spacing:.02em; padding-left:28px; position:relative; line-height:1.6; }
-  .worry li::before{ content:"✓"; position:absolute; left:0; top:1px; font-family:var(--serif-en); opacity:.7; }
+  .worry li::before{ content:"✓"; position:absolute; left:0; top:1px; font-family:var(--serif-en); opacity:.55; }
   .bridge{ margin-top:28px; font-family:var(--serif-jp); font-size:1.02rem; line-height:1.7; }
   .bridge em{ font-style:normal; border-bottom:2px solid currentColor; }
 
   /* 選ばれる理由 */
   .reasons{ margin-top:24px; display:grid; gap:18px; }
   .reason{ display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
-  .reason__no{ font-family:var(--serif-en); font-size:1.5rem; font-weight:600; opacity:.55; line-height:1; }
+  .reason__no{ font-family:var(--serif-en); font-size:1.5rem; font-weight:600; opacity:.4; line-height:1; }
   .reason h3{ font-family:var(--serif-jp); font-size:1rem; font-weight:600; letter-spacing:.03em; margin-bottom:5px; }
-  .reason p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.92; }
+  .reason p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.8; }
 
   /* ギャラリー */
   .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:24px; }
@@ -104,57 +107,59 @@
 
   /* お客様の声 */
   .voices{ margin-top:22px; display:grid; gap:14px; }
-  .vcard{ border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:16px 16px; }
+  .vcard{ background:var(--white); border:1px solid var(--line); border-radius:8px; padding:16px 16px; }
   .vcard p{ font-size:.8rem; line-height:1.75; font-weight:300; }
-  .vcard span{ display:block; margin-top:10px; font-size:.72rem; opacity:.6; letter-spacing:.04em; }
+  .vcard span{ display:block; margin-top:10px; font-size:.72rem; opacity:.5; letter-spacing:.04em; }
 
   /* 料金 */
   .ptable{ margin-top:22px; }
   .ptable__head, .prow{ display:grid; grid-template-columns:1fr 72px 72px; gap:8px; align-items:baseline; }
   .ptable--1 .ptable__head, .ptable--1 .prow{ grid-template-columns:1fr auto; }
-  .ptable__head{ padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.5); }
-  .ptable__head span{ font-size:.66rem; letter-spacing:.12em; opacity:.7; }
+  .ptable__head{ padding-bottom:10px; border-bottom:1px solid var(--ink); }
+  .ptable__head span{ font-size:.66rem; letter-spacing:.12em; opacity:.55; }
   .ptable__head .r{ text-align:right; }
-  .prow{ padding:13px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .prow{ padding:13px 0; border-bottom:1px solid var(--line); }
   .prow:last-child{ border-bottom:none; }
   .prow .nm{ font-size:.84rem; font-weight:300; letter-spacing:.02em; }
   .prow .v{ font-family:var(--serif-en); font-size:1.2rem; font-weight:600; text-align:right; white-space:nowrap; }
-  .prow .dash{ opacity:.35; font-size:1rem; }
-  .pnote{ text-align:center; font-size:.72rem; opacity:.6; margin-top:18px; letter-spacing:.05em; }
+  .prow .dash{ opacity:.3; font-size:1rem; }
+  .pnote{ text-align:center; font-size:.72rem; opacity:.5; margin-top:18px; letter-spacing:.05em; }
 
-  /* 初回特典・流れ 共通リスト */
+  /* 初回特典リスト */
   .deflist{ list-style:none; margin-top:24px; display:grid; gap:14px; }
   .deflist li{ font-size:.88rem; line-height:1.6; padding-left:26px; position:relative; font-weight:300; }
-  .deflist li::before{ content:"◎"; position:absolute; left:0; top:0; opacity:.8; }
+  .deflist li::before{ content:"◎"; position:absolute; left:0; top:0; opacity:.65; }
 
+  /* 流れ */
   .flow{ margin-top:24px; display:grid; gap:0; }
   .fstep{ display:grid; grid-template-columns:auto 1fr; gap:16px; padding:0 0 22px; position:relative; }
   .fstep:last-child{ padding-bottom:0; }
   .fstep__no{
-    width:42px; height:42px; border-radius:50%; border:1px solid currentColor;
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--ink);
     display:flex; align-items:center; justify-content:center; font-family:var(--serif-en);
-    font-size:1.1rem; font-weight:600; flex-shrink:0; z-index:1; background:var(--ink);
+    font-size:1.1rem; font-weight:600; flex-shrink:0; z-index:1; background:var(--white);
   }
+  .slide--alt .fstep__no{ background:var(--offwhite); }
   .fstep:not(:last-child)::before{
-    content:""; position:absolute; left:21px; top:42px; bottom:0; width:1px; background:rgba(255,255,255,.3);
+    content:""; position:absolute; left:21px; top:42px; bottom:0; width:1px; background:rgba(0,0,0,.18);
   }
   .fstep h3{ font-family:var(--serif-jp); font-size:.98rem; font-weight:600; margin-bottom:5px; }
-  .fstep p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.9; }
+  .fstep p{ font-size:.8rem; line-height:1.6; font-weight:300; opacity:.8; }
 
   /* FAQ */
   .faq{ margin-top:22px; display:grid; gap:14px; }
-  .faq__item{ border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:14px; }
+  .faq__item{ border-bottom:1px solid var(--line); padding-bottom:14px; }
   .faq__q{ font-size:.9rem; font-weight:500; line-height:1.5; padding-left:24px; position:relative; }
-  .faq__q::before{ content:"Q"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.7; }
-  .faq__a{ font-size:.8rem; line-height:1.7; font-weight:300; opacity:.88; margin-top:8px; padding-left:24px; position:relative; }
-  .faq__a::before{ content:"A"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.45; }
+  .faq__q::before{ content:"Q"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.6; }
+  .faq__a{ font-size:.8rem; line-height:1.7; font-weight:300; opacity:.78; margin-top:8px; padding-left:24px; position:relative; }
+  .faq__a::before{ content:"A"; position:absolute; left:0; top:0; font-family:var(--serif-en); font-weight:600; opacity:.35; }
 
   /* アクセス */
-  .map{ margin-top:22px; border-radius:8px; overflow:hidden; aspect-ratio:16/10; }
-  .map iframe{ width:100%; height:100%; border:0; display:block; filter:grayscale(.2); }
+  .map{ margin-top:22px; border-radius:8px; overflow:hidden; aspect-ratio:16/10; border:1px solid var(--line); }
+  .map iframe{ width:100%; height:100%; border:0; display:block; filter:grayscale(.15); }
   .access{ margin-top:20px; display:grid; gap:0; }
-  .access div{ display:grid; grid-template-columns:84px 1fr; gap:10px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.14); font-size:.82rem; }
-  .access dt{ font-family:var(--serif-en); letter-spacing:.1em; opacity:.7; font-size:.78rem; }
+  .access div{ display:grid; grid-template-columns:84px 1fr; gap:10px; padding:11px 0; border-bottom:1px solid var(--line); font-size:.82rem; }
+  .access dt{ font-family:var(--serif-en); letter-spacing:.1em; opacity:.6; font-size:.78rem; }
   .access dd{ font-weight:300; line-height:1.6; }
   .access a{ color:inherit; }
 
@@ -166,11 +171,12 @@
     font-size:.9rem; font-weight:500; letter-spacing:.05em; text-decoration:none; transition:transform .2s;
   }
   .btn:active{ transform:scale(.97); }
-  .btn--hpb{ background:var(--white); color:var(--ink); border:1px solid var(--white); }
+  .btn--ink{ background:var(--ink); color:#fff; }
+  .btn--white{ background:var(--white); color:var(--ink); border:1px solid var(--white); }
   .btn--line{ background:var(--green); color:#fff; }
   .btn svg{ width:18px; height:18px; }
 
-  .copy{ margin-top:34px; font-family:var(--serif-en); font-size:.66rem; letter-spacing:.16em; opacity:.5; text-align:center; }
+  .copy{ margin-top:34px; font-family:var(--serif-en); font-size:.66rem; letter-spacing:.16em; opacity:.55; text-align:center; }
 
   /* スワイプ誘導 */
   .swipe{
@@ -183,9 +189,9 @@
 
   /* ページネーション */
   .dots{ position:absolute; right:12px; top:50%; transform:translateY(-50%); z-index:50; display:flex; flex-direction:column; gap:8px; }
-  .dots button{ width:7px; height:7px; border-radius:50%; border:none; padding:0; cursor:pointer; background:rgba(128,128,128,.45); transition:all .3s; }
+  .dots button{ width:7px; height:7px; border-radius:50%; border:none; padding:0; cursor:pointer; background:rgba(0,0,0,.18); transition:all .3s; }
   .dots button.active{ background:var(--ink); height:18px; border-radius:4px; }
-  .dots button.on-dark{ background:rgba(255,255,255,.4); }
+  .dots button.on-dark{ background:rgba(255,255,255,.45); }
   .dots button.on-dark.active{ background:#fff; }
 
   /* 進捗バー */
@@ -217,7 +223,7 @@
     </section>
 
     <!-- 2. 悩み -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide slide--alt">
       <div class="slide__inner">
         <span class="eyebrow">Check</span>
         <h2 class="big heading">こんな<em>お悩み</em>、<br>ありませんか？</h2>
@@ -244,7 +250,7 @@
     </section>
 
     <!-- 4. 選ばれる理由 -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide slide--alt">
       <div class="slide__inner">
         <span class="eyebrow">Why ILUM.</span>
         <h2 class="big heading">ILUM. が<em>選ばれる理由</em></h2>
@@ -259,7 +265,7 @@
     </section>
 
     <!-- 5. ギャラリー -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide">
       <div class="slide__inner">
         <span class="eyebrow">Gallery</span>
         <h2 class="big heading">施術<em>ギャラリー</em></h2>
@@ -274,7 +280,7 @@
     </section>
 
     <!-- 6. お客様の声 -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide slide--alt">
       <div class="slide__inner">
         <span class="eyebrow">Voice</span>
         <h2 class="big heading">お客様の<em>声</em></h2>
@@ -288,7 +294,7 @@
     </section>
 
     <!-- 7. 料金（エクステ） -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide">
       <div class="slide__inner">
         <span class="eyebrow">Price</span>
         <h2 class="big heading">まつ毛エクステ<em>料金</em></h2>
@@ -306,7 +312,7 @@
     </section>
 
     <!-- 8. オプション料金 -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide">
       <div class="slide__inner">
         <span class="eyebrow">Option</span>
         <h2 class="big heading">オプション</h2>
@@ -323,7 +329,7 @@
     </section>
 
     <!-- 9. 初回特典 -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide slide--alt">
       <div class="slide__inner center">
         <span class="eyebrow">First Visit</span>
         <h2 class="big">初めての方へ、<br><em>うれしい特典</em>をご用意</h2>
@@ -333,14 +339,14 @@
           <li>初来店価格 ── まずはお試ししやすい料金で</li>
         </ul>
         <div class="cta-group">
-          <a class="btn btn--hpb" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
+          <a class="btn btn--ink" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
           <a class="btn btn--line" href="https://page.line.me/740hlxky?oat_content=url&openQrModal=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.74 2 10.35c0 4.13 3.55 7.59 8.35 8.24.32.07.77.21.88.49.1.25.06.64.03.89l-.14.86c-.04.25-.2.99.87.54 1.07-.45 5.77-3.4 7.87-5.82C21.36 13.96 22 12.24 22 10.35 22 5.74 17.52 2 12 2z"/></svg>LINEで予約</a>
         </div>
       </div>
     </section>
 
     <!-- 10. 施術の流れ -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide">
       <div class="slide__inner">
         <span class="eyebrow">Flow</span>
         <h2 class="big heading">施術の<em>流れ</em></h2>
@@ -354,7 +360,7 @@
     </section>
 
     <!-- 11. FAQ -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide slide--alt">
       <div class="slide__inner">
         <span class="eyebrow">FAQ</span>
         <h2 class="big heading">よくある<em>質問</em></h2>
@@ -368,7 +374,7 @@
     </section>
 
     <!-- 12. アクセス -->
-    <section class="slide slide--dark" data-theme="dark">
+    <section class="slide">
       <div class="slide__inner">
         <span class="eyebrow">Access</span>
         <h2 class="big heading">店舗<em>情報</em></h2>
@@ -393,7 +399,7 @@
         <h2 class="big">まずはお気軽に<br>ご予約ください</h2>
         <p class="lead" style="margin-top:14px;">当日予約OK ｜ 学割あり ｜ 隠れ家サロン</p>
         <div class="cta-group">
-          <a class="btn btn--hpb" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
+          <a class="btn btn--white" href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener">ホットペッパーで予約</a>
           <a class="btn btn--line" href="https://page.line.me/740hlxky?oat_content=url&openQrModal=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.74 2 10.35c0 4.13 3.55 7.59 8.35 8.24.32.07.77.21.88.49.1.25.06.64.03.89l-.14.86c-.04.25-.2.99.87.54 1.07-.45 5.77-3.4 7.87-5.82C21.36 13.96 22 12.24 22 10.35 22 5.74 17.52 2 12 2z"/></svg>LINEで予約</a>
         </div>
         <p class="copy">© 2025 ILUM. BEAUTY SALON.</p>
