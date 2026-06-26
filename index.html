@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>まつ毛エクステ専門｜大阪府和泉市 ILUM. BEAUTY SALON｜当日予約OK・学割あり</title>
-<meta name="description" content="大阪府和泉市のまつ毛エクステ専門サロン ILUM.。自まつ毛にやさしいLEDフラットラッシュで“盛れるのに長持ち”。当日予約OK／学割クーポンあり／完全個室。和泉中央駅より徒歩8分。" />
+<meta name="description" content="大阪府和泉市のまつ毛エクステ専門サロン ILUM.。自まつ毛にやさしいLEDフラットラッシュで“盛れるのに長持ち”。当日予約OK／学割クーポンあり／隠れ家のような落ち着いた空間。和泉中央駅より徒歩8分。" />
 
 <!-- ============================================================
      ILUM. マツエク専門 メタ広告用LP — フレームワーク版
@@ -220,23 +220,39 @@
   /* ============================================
      7. PRICE（料金）
   ============================================ */
-  .price-note { text-align:center; font-size:0.82rem; color:#888; margin-bottom:30px; }
-  .price-block { margin-bottom:36px; }
+  .price-note { text-align:center; font-size:0.8rem; color:#999; margin-bottom:38px; letter-spacing:0.06em; }
+  .price-block {
+    border:1px solid #e8e8e8; border-radius:10px; overflow:hidden;
+    background:var(--white); margin-bottom:28px;
+    box-shadow:0 6px 24px -18px rgba(0,0,0,.4);
+  }
   .price-block:last-of-type { margin-bottom:0; }
   .price-block__title {
-    font-family:var(--font-serif-jp); font-size:1.1rem; font-weight:600; letter-spacing:0.06em;
-    margin-bottom:16px; padding-left:14px; border-left:3px solid var(--gold);
+    margin:0; background:var(--charcoal); color:var(--white);
+    font-family:var(--font-serif-jp); font-size:1.02rem; font-weight:500;
+    letter-spacing:0.12em; text-align:center; padding:18px 20px;
   }
-  .price-table { width:100%; border-collapse:collapse; background:var(--white); font-size:0.92rem; }
+  .price-table { width:100%; border-collapse:collapse; background:var(--white); }
   .price-table thead th {
-    background:var(--charcoal); color:#fff; font-weight:400; letter-spacing:0.08em;
-    padding:14px 16px; text-align:left; font-size:0.82rem;
+    font-family:var(--font-sans-jp); font-size:0.72rem; font-weight:500;
+    letter-spacing:0.16em; color:#9a9a9a; text-align:left;
+    padding:20px 8px 12px; border-bottom:1px solid var(--charcoal);
   }
   .price-table thead th.num { text-align:right; white-space:nowrap; }
-  .price-table tbody td { padding:14px 16px; border-bottom:1px solid var(--greige); }
-  .price-table tbody td.num { text-align:right; font-family:var(--font-serif-en); font-size:1.02rem; white-space:nowrap; }
-  .price-table tbody tr:nth-child(even) { background:var(--offwhite); }
-  .price-table .dash { color:#bbb; }
+  .price-table tbody td {
+    padding:16px 8px; border-bottom:1px solid #efefef;
+    font-size:0.9rem; color:#333; vertical-align:middle; letter-spacing:0.02em;
+  }
+  .price-table tbody tr:last-child td { border-bottom:none; }
+  .price-table tbody td.num {
+    text-align:right; font-family:var(--font-serif-en); font-size:1.32rem;
+    font-weight:600; color:var(--charcoal); white-space:nowrap; line-height:1;
+  }
+  .price-table thead th:first-child, .price-table tbody td:first-child { padding-left:26px; }
+  .price-table thead th:last-child, .price-table tbody td:last-child { padding-right:26px; }
+  .price-table tbody tr { transition:background .18s ease; }
+  .price-table tbody tr:hover td { background:#fafafa; }
+  .price-table .dash { color:#ccc; font-size:1rem; }
 
   /* ============================================
      8. OFFER（初回特典）
@@ -370,7 +386,7 @@
     <!-- トラストインジケータ（口コミ評価・実績） -->
     <div class="hero__trust">
       <span>★★★★☆ 口コミ4.0</span>
-      <span>完全個室</span>
+      <span>隠れ家サロン</span>
       <span>和泉中央駅 徒歩8分</span>
     </div>
 
@@ -467,8 +483,8 @@
       <div class="reason">
         <div class="reason__no">04</div>
         <div class="reason__body">
-          <h3>完全個室でリラックス</h3>
-          <p>周りを気にせず過ごせる完全個室。施術中はそのままおやすみいただけます。</p>
+          <h3>隠れ家のような上質空間</h3>
+          <p>席間をゆったりとった、隠れ家のような落ち着いた空間。施術中はそのままおやすみいただけます。</p>
         </div>
       </div>
       <div class="reason">
@@ -511,27 +527,23 @@
       <div class="divider"></div>
     </div>
 
-    <!-- ▼要差し替え：実際の口コミ -->
+    <!-- ▼要差し替え：実際のホットペッパー等の口コミに差し替えてください -->
     <div class="voice reveal">
       <div class="voice-card">
-        <div class="voice-card__stars">★★★★★</div>
-        <p class="voice-card__text">持ちが本当に良くて、自まつ毛も傷まなくなりました。毎回似合うデザインを提案してくれます。</p>
-        <p class="voice-card__name">— 20代 女性</p>
+        <p class="voice-card__text">前のサロンだと2週間くらいでスカスカになってたんですが、ここに変えてから3週間以上きれいに持ってます。付け替えのペースが空いた分むしろお得かも。デザインも毎回ちゃんと相談に乗ってくれるのが安心です。</p>
+        <p class="voice-card__name">— 20代・会社員（フラットラッシュ）</p>
       </div>
       <div class="voice-card">
-        <div class="voice-card__stars">★★★★★</div>
-        <p class="voice-card__text">完全個室でゆっくりできるのが嬉しい。当日予約できて助かりました。</p>
-        <p class="voice-card__name">— 30代 女性</p>
+        <p class="voice-card__text">当日にLINEで空き確認したら取ってもらえて助かりました。施術中ほぼ寝てしまうくらいリラックスできます（笑）。仕上がりも自然で、家族には気づかれてないみたいです。</p>
+        <p class="voice-card__name">— 30代・主婦</p>
       </div>
       <div class="voice-card">
-        <div class="voice-card__stars">★★★★★</div>
-        <p class="voice-card__text">マツエクが初めてで不安でしたが、カウンセリングが丁寧で安心できました。仕上がりも理想どおりです。</p>
-        <p class="voice-card__name">— 20代 女性</p>
+        <p class="voice-card__text">マツエク自体が初めてで、目に染みたりしないか不安だったんですが、最初に丁寧に説明してもらえて安心できました。本数とか長さも「初めてならこれくらいが自然ですよ」と提案してくれて、結果ちょうど良かったです。</p>
+        <p class="voice-card__name">— 20代・学生（学割利用）</p>
       </div>
       <div class="voice-card">
-        <div class="voice-card__stars">★★★★★</div>
-        <p class="voice-card__text">ナチュラルなのに目力が出ると褒められます。LINEで気軽に予約できるのも続けやすいです。</p>
-        <p class="voice-card__name">— 40代 女性</p>
+        <p class="voice-card__text">ナチュラル派なので「盛りすぎないで」とお願いしたら、ちゃんと希望どおりにしてくれました。すっぴんでも目元だけ整って見えるので朝がラクです。駅から少し歩きますが、その分落ち着いた雰囲気で気に入ってます。</p>
+        <p class="voice-card__name">— 40代・パート</p>
       </div>
     </div>
   </div>
@@ -619,7 +631,7 @@
     <div class="flow reveal">
       <div class="flow-step">
         <div class="flow-step__no">1</div>
-        <div class="flow-step__body"><h3>ご予約・ご来店</h3><p>ホットペッパー・LINE・お電話からご予約。完全個室でお迎えします。</p></div>
+        <div class="flow-step__body"><h3>ご予約・ご来店</h3><p>ホットペッパー・LINE・お電話からご予約。落ち着いた空間でお迎えします。</p></div>
       </div>
       <div class="flow-step">
         <div class="flow-step__no">2</div>
@@ -703,7 +715,7 @@
   <div class="container narrow reveal">
     <span class="eyebrow">Reservation</span>
     <h2>まずはお気軽に<br>ご予約ください</h2>
-    <p>当日予約OK ｜ 学割クーポンあり ｜ 完全個室</p>
+    <p>当日予約OK ｜ 学割クーポンあり ｜ 隠れ家サロン</p>
     <div class="btn-group">
       <a href="https://beauty.hotpepper.jp/CSP/kr/reserve/?storeId=H000694980&ch=1&vos=cpshbkprocap0140516003" target="_blank" rel="noopener" class="btn btn--outline">ホットペッパーで予約</a>
       <a href="https://page.line.me/740hlxky?oat_content=url&openQrModal=true" target="_blank" rel="noopener" class="btn btn--line">
